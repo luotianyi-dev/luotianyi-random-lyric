@@ -58,7 +58,7 @@ def load():
         if (database[0] == '') or (database[-1] == ''):
             print(colored('red', 'Error:'), '遇到了空的歌词块 (quoteblock)')
             print_ident(len('Error: '), [
-                '数据库文件的开头和结尾不应该有横线 (\'---...---\')，请移除之。',
+                '数据库文件的开头和结尾不应该有横线 (\'---...---\'), 请移除之。',
             ])
             sys.exit(-2)
     result = []
@@ -69,7 +69,7 @@ def load():
         if not metadata_re.match(lyric_metadata):
             print(colored('red', 'Error:'), '歌词块 (quoteblock) 作者、歌名或年份格式错误')
             print_ident(len('Error: '), [
-                '歌词块 (quoteblock) 的最后一行应该为歌词作者、歌名和年份，格式为：',
+                '歌词块 (quoteblock) 的最后一行应该为歌词作者、歌名和年份, 格式为：',
                 '> ' + colored('green', '-- 作者 《歌名》, 年份'),
                 '发生错误的数据为：',
                 '> ' + colored('yellow', lyric_metadata),
@@ -95,19 +95,19 @@ def load():
                 print_ident(len('Lyric: '), quoteblock_lines, prefix='> ', color="yellow", ident_first_line=True)
                 sys.exit(-2)
             if len(line.encode('gb18030')) > 30:
-                print(colored('red', 'Error:'), f'歌词单行不能超过 30 个字节 (GB18030 编码)，该行为 {len(line.encode("gb18030"))} 个字节')
+                print(colored('red', 'Error:'), f'歌词单行不能超过 30 个字节 (GB18030 编码), 该行为 {len(line.encode("gb18030"))} 个字节')
                 print_ident(len('Error: '), [f'在第 {i + 1} 行', colored('blue', line)])
                 print("Lyric: ", end='')
                 print_ident(len('Lyric: '), quoteblock_lines, prefix='> ', color="yellow", ident_first_line=True)
                 sys.exit(-2)
             if len(' '.join(lyric_lines).encode('gb18030')) > 80:
-                print(colored('red', 'Error:'), f'歌词行总字数不能超过 80 个字节 (GB18030 编码)，该行为 {len(" ".join(lyric_lines).encode("gb18030"))} 个字节')
+                print(colored('red', 'Error:'), f'歌词行总字数不能超过 80 个字节 (GB18030 编码), 该行为 {len(" ".join(lyric_lines).encode("gb18030"))} 个字节')
                 print_ident(len('Error: '), [colored('blue', ' '.join(lyric_lines))])
                 print("Lyric: ", end='')
                 print_ident(len('Lyric: '), quoteblock_lines, prefix='> ', color="yellow", ident_first_line=True)
                 sys.exit(-2)
             if len(lyric_lines) > 4:
-                print(colored('red', 'Error:'), f'歌词行数不能超过 4 行，该块为 {len(lyric_lines)} 行')
+                print(colored('red', 'Error:'), f'歌词行数不能超过 4 行, 该块为 {len(lyric_lines)} 行')
                 print("Lyric: ", end='')
                 print_ident(len('Lyric: '), quoteblock_lines, prefix='> ', color="yellow", ident_first_line=True)
                 sys.exit(-2)
